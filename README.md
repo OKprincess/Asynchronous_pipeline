@@ -12,7 +12,7 @@ RISC-V : 5-stage pipelined Asynchronous RISC-V Design Project
 
 ## Folder Structure
 ```
-:clipboard: ~ (~OKprincess/projects/)
+":clipboard:" ~ (~OKprincess/projects/)
 ┣ :package: zaram_training (RISC-V based practice)
 ┗ :package: Asynchronous_pipeline
   ┣ :open_file_folder: README.md
