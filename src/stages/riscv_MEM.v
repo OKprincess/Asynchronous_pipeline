@@ -11,12 +11,12 @@
 
 module riscv_MEM 
 (
-	output						o_MEM_reg_wr_en,
-	output		[1:0]			o_MEM_src_rd,
-	output		[`XLEN-1:0]		o_MEM_alu_out,
-	output		[4:0]			o_MEM_rd,				// To hazard
-	output		[`XLEN-1:0]		o_MEM_pc4,
-	output		[`XLEN-1:0]		o_MEM_imm,
+	// output						o_MEM_reg_wr_en,
+	// output		[1:0]			o_MEM_src_rd,
+	// output		[`XLEN-1:0]		o_MEM_alu_out,
+	// output		[4:0]			o_MEM_rd,				// To hazard
+	// output		[`XLEN-1:0]		o_MEM_pc4,
+	// output		[`XLEN-1:0]		o_MEM_imm,
 
 	output		[`XLEN-1:0]		o_MEM_mem_addr,			// dmeminterface
 	output						o_MEM_mem_wr_en,
@@ -28,21 +28,14 @@ module riscv_MEM
 	input						i_MEM_mem_wr_en,
 	input		[`XLEN-1:0]		i_MEM_fwd_b,
 	input		[`XLEN-1:0]		i_MEM_mem_rd_data,
-	input		[2:0]			i_MEM_funct3,
-
-	input						i_MEM_reg_wr_en,
-	input		[1:0]			i_MEM_src_rd,
-	input		[4:0]			i_MEM_rd,
-	input		[`XLEN-1:0]		i_MEM_pc4,
-	input		[`XLEN-1:0]		i_MEM_imm
+	input		[2:0]			i_MEM_funct3
+	// input						i_MEM_reg_wr_en,
+	// input		[1:0]			i_MEM_src_rd,
+	// input		[4:0]			i_MEM_rd,
+	// input		[`XLEN-1:0]		i_MEM_pc4,
+	// input		[`XLEN-1:0]		i_MEM_imm
 );
 
-	assign		o_MEM_reg_wr_en	= i_MEM_reg_wr_en;
-	assign		o_MEM_src_rd	= i_MEM_src_rd;
-	assign		o_MEM_alu_out	= i_MEM_alu_out;		
-	assign		o_MEM_rd		= i_MEM_rd;
-	assign		o_MEM_pc4		= i_MEM_pc4;
-	assign		o_MEM_imm		= i_MEM_imm;
 
 	riscv_dmem_interface
 	u_riscv_dmem_interface(

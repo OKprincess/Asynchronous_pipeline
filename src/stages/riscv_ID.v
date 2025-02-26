@@ -23,11 +23,11 @@ module riscv_ID
 	output					o_ID_src_alu_b,
 	output		[`XLEN-1:0]	o_ID_rs1_data,			// from reg file
 	output		[`XLEN-1:0]	o_ID_rs2_data,
-	output		[`XLEN-1:0]	o_ID_pc,				// bypass
+	//output		[`XLEN-1:0]	o_ID_pc,				// bypass
 	output		[4:0]		o_ID_rs1,
 	output		[4:0]		o_ID_rs2,
 	output		[4:0]		o_ID_rd,
-	output		[`XLEN-1:0]	o_ID_pc4,
+	//output		[`XLEN-1:0]	o_ID_pc4,
 	output		[`XLEN-1:0]	o_ID_imm,				// from immext
 	
 	input		[`XLEN-1:0]	i_ID_instr,

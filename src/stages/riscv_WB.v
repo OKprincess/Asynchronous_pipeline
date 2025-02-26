@@ -11,21 +11,19 @@
 
 module riscv_WB 
 (
-	output					o_WB_reg_wr_en,		// To hazard
+	// output					o_WB_reg_wr_en,		// To hazard
 	output		[`XLEN-1:0]	o_WB_rd_data,
-	output		[4:0]		o_WB_rd,
+	// output		[4:0]		o_WB_rd,
 
-	input					i_WB_reg_wr_en,
+	//	input					i_WB_reg_wr_en,
 	input		[1:0]		i_WB_src_rd,
 	input		[`XLEN-1:0]	i_WB_alu_out,
 	input		[`XLEN-1:0]	i_WB_mem_rd_data,
 	input		[`XLEN-1:0]	i_WB_pc4,
-	input		[`XLEN-1:0]	i_WB_imm,
-	input		[4:0]		i_WB_rd
+	input		[`XLEN-1:0]	i_WB_imm
+	//input		[4:0]		i_WB_rd
 );
 
-	assign		o_WB_reg_wr_en	= i_WB_reg_wr_en;
-	assign		o_WB_rd			= i_WB_rd;
 
 	riscv_mux
 	#(

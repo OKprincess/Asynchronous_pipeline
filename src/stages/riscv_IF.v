@@ -12,14 +12,14 @@
 module riscv_IF 
 (
 	output		[`XLEN-1:0]		o_IF_instr,
-	output		[`XLEN-1:0]		o_IF_pc,
 	output		[`XLEN-1:0]		o_IF_pc4,
+	output		[`XLEN-1:0]		o_cpu_pc,
+
 	input		[`XLEN-1:0]		i_IF_pc,
 	input		[`XLEN-1:0]		i_cpu_instr
 );
 
 	assign		o_IF_instr		= i_cpu_instr;
-	assign		o_IF_pc			= i_IF_pc;
 	
 	riscv_adder
 	u_riscv_adder_pc_plus_4(
