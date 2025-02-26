@@ -4,7 +4,7 @@
 //	* Filename		: click_network.v
 //	* Description	: 
 // ===================================================
-`include		"click.v"
+`include		"../core/click.v"
 
 module click_network 
 (
