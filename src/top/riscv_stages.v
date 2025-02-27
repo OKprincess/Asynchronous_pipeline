@@ -10,6 +10,9 @@
 `include		"../stages/riscv_EX.v"
 `include		"../stages/riscv_MEM.v"
 `include		"../stages/riscv_WB.v"
+`include		"../click_network/click_reg.v"
+`include		"../click_network/click_sink.v"
+`include		"../click_network/click_source.v"
 `include		"../core/riscv_configs.v"
 `include		"riscv_hazard.v"
 `endif
@@ -23,11 +26,6 @@ module riscv_stages
 	output			[`XLEN-1:0]		o_stage_mem_wr_data,
 	input			[`XLEN-1:0]		i_stage_instr,
 	input			[`XLEN-1:0]		i_stage_mem_rd_data,
-	input							i_clk_IF,
-	input							i_clk_ID,
-	input							i_clk_EX,
-	input							i_clk_MEM,
-	input							i_clk_WB,
 	input							i_rstn
 );
 
@@ -118,9 +116,44 @@ module riscv_stages
 		.i_mux_sel			(src_pc[EX]	)
 	);
 
+	wire			clk_IF, clk_ID, clk_EX, clk_MM, clk_WB;
+	wire			req_IFID, req_IDEX, req_EXMM, req_MMWB, ack_IFID, ack_IDEX, ack_EXMM, ack_MMWB;
+	click_source
+	u_click_IF(
+		.o_click	(clk_IF	),
+		.out_reqR	(req_IFID),
+		.in_ackR	(ack_IFID),
+		.i_rstn		(i_rstn	));
+	click_reg
+	u_click_ID(
+		.o_click	(clk_ID	),
+		.out_ackL	(ack_IFID),
+		.out_reqR	(req_IDEX),
+		.in_reqL	(req_IFID),
+		.in_ackR	(ack_IDEX));
+	click_reg
+	u_click_EX(
+		.o_click	(clk_EX	),
+		.out_ackL	(ack_IDEX),
+		.out_reqR	(req_EXMM),
+		.in_reqL	(req_IDEX),
+		.in_ackR	(ack_EXMM));
+	click_reg
+	u_click_MM(
+		.o_click	(clk_MM	),
+		.out_ackL	(ack_EXMM),
+		.out_reqR	(req_MMWB),
+		.in_reqL	(req_EXMM),
+		.in_ackR	(ack_MMWB));
+	click_sink
+	u_click_WB(
+		.o_click	(clk_WB	),
+		.out_ackL	(ack_MMWB),
+		.in_reqL	(req_MMWB),
+		.i_rstn		(i_rstn));
 
 	////////////////////////// Fetch //////////////////////////
-	always @(posedge i_clk_IF) begin
+	always @(posedge clk_IF) begin
 		if(~i_rstn)begin
 			pc[IF]	<= 0;
 		end else begin
@@ -140,8 +173,9 @@ module riscv_stages
 		.o_IF_pc			(o_stage_pc		),
 		.o_IF_instr			(pc4[IF]		)
 	);
+	
 
-	always @(posedge i_clk_ID) begin
+	always @(posedge clk_ID) begin
 		if(stall[ID])begin
 			instr	[ID]	<= instr	[ID];
 			pc		[ID]	<= pc		[ID];
@@ -187,7 +221,7 @@ module riscv_stages
 	
 
 	////////////////////////// EXCUTE //////////////////////////
-	always @(posedge i_clk_EX) begin
+	always @(posedge clk_EX) begin
 		if(flush[EX]) begin
 			// Control Signals
 			reg_wr_en	[EX]	<= 0; 
@@ -255,7 +289,7 @@ module riscv_stages
 		
 	////////////////////////// MEMORY //////////////////////////
 	// MM
-	always @(posedge i_clk_MEM) begin
+	always @(posedge clk_MM) begin
 		// Control Signals
         reg_wr_en	[MM]	<= reg_wr_en	[EX]; 
         src_rd	 	[MM]	<= src_rd	 	[EX];
@@ -286,7 +320,7 @@ module riscv_stages
 
 
 	////////////////////////// WB //////////////////////////
-	always @(posedge i_clk_WB) begin
+	always @(posedge clk_WB) begin
 		// Control Signals
 		reg_wr_en	[WB]	<= reg_wr_en	[MM];
 		src_rd		[WB]	<= src_rd		[MM];
