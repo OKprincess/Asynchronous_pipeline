@@ -117,7 +117,8 @@ module riscv_stages
 	);
 
 	wire			clk_IF, clk_ID, clk_EX, clk_MM, clk_WB;
-	wire			req_IFID, req_IDEX, req_EXMM, req_MMWB, ack_IFID, ack_IDEX, ack_EXMM, ack_MMWB;
+	wire			req_IFID, req_IDEX, req_EXMM, req_MMWB;
+	wire			ack_IFID, ack_IDEX, ack_EXMM, ack_MMWB;
 	click_source
 	u_click_IF(
 		.o_click	(clk_IF	),
@@ -174,6 +175,7 @@ module riscv_stages
 		.o_IF_instr			(pc4[IF]		)
 	);
 	
+	////////////////////////// Decode //////////////////////////
 
 	always @(posedge clk_ID) begin
 		if(stall[ID])begin
@@ -193,7 +195,6 @@ module riscv_stages
 		end
 	end
 
-	////////////////////////// Decode //////////////////////////
 	riscv_ID
 	u_riscv_ID(
 		.o_ID_reg_wr_en		(reg_wr_en[ID]	),

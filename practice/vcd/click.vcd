@@ -1,0 +1,136 @@
+$date
+	Wed Mar  5 21:34:04 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module click_tb $end
+$var wire 1 ! o_reqR $end
+$var wire 1 " o_click $end
+$var wire 1 # o_ackL $end
+$var reg 1 $ i_ackR $end
+$var reg 1 % i_reqL $end
+$var reg 1 & i_rstn $end
+$var reg 256 ' vcd_file [255:0] $end
+$scope module u_click1 $end
+$var wire 1 ( and_out $end
+$var wire 1 $ i_ackR $end
+$var wire 1 % i_reqL $end
+$var wire 1 & i_rstn $end
+$var wire 1 ) n_dff_outL $end
+$var wire 1 * n_dff_outR $end
+$var wire 1 # o_ackL $end
+$var wire 1 " o_click $end
+$var wire 1 ! o_reqR $end
+$var wire 1 + xnor_out $end
+$var wire 1 , xor_out $end
+$var wire 1 - dff_outR $end
+$var wire 1 . dff_outL $end
+$scope module u_dffL $end
+$var wire 1 ( i_clk $end
+$var wire 1 ) i_d $end
+$var wire 1 & i_rstn $end
+$var wire 1 . o_q $end
+$var reg 1 / q_internal $end
+$upscope $end
+$scope module u_dffR $end
+$var wire 1 ( i_clk $end
+$var wire 1 * i_d $end
+$var wire 1 & i_rstn $end
+$var wire 1 - o_q $end
+$var reg 1 0 q_internal $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+00
+0/
+x.
+x-
+x,
+x+
+x*
+x)
+x(
+b1011100010111101110110011000110110010000101111011000110110110001101001011000110110101100101110011101100110001101100100 '
+0&
+0%
+0$
+x#
+x"
+x!
+$end
+#3000
+0#
+0.
+0!
+0-
+#6000
+1)
+1*
+#9000
+0,
+#12000
+1+
+#13000
+0"
+0(
+#50000
+1&
+#80000
+1%
+#86000
+1,
+#90000
+10
+1/
+1"
+1(
+#93000
+1$
+1!
+1-
+1#
+1.
+#96000
+0*
+0)
+#99000
+0,
+#103000
+0"
+0(
+#110000
+0%
+#116000
+1,
+#120000
+0/
+00
+1"
+1(
+#123000
+0#
+0.
+0!
+0-
+#126000
+1)
+1*
+#129000
+0,
+#132000
+0+
+#133000
+0"
+0(
+#140000
+0$
+#149000
+1+
+#170000

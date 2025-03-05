@@ -111,7 +111,7 @@ module riscv_EX
 	u_riscv_adder_pc_plus_imm(
 		.o_adder_sum			(o_EX_pcimm					),
 		.i_adder_a				(i_EX_pc					),
-		.i_adder_a				(i_EX_imm					)
+		.i_adder_b				(i_EX_imm					)
 	);
 
 
