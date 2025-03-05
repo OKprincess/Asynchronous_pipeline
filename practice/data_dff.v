@@ -5,12 +5,13 @@
 //	* Date			: 2025-03-05 
 //	* Description	: 
 // ===================================================
-module	riscv_register
+module	data_dff
 #(
 	parameter	REGISTER_INIT	= 0
 )
 (
-	output	reg	[`XLEN-1:0]		o_register_q,
+	output	reg					o_reg_s,
+	output	reg	[31:0]			o_reg_s,
 	input		[`XLEN-1:0]		i_register_d,
 	input						i_register_en,
 	input						i_clk,
